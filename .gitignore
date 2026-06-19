@@ -6,12 +6,14 @@
 /drupalbycomposer/web/sites/development.services.yml
 /drupalbycomposer/web/sites/example.settings.local.php
 /drupalbycomposer/web/sites/example.sites.php
-
 /drupalbycomposer/web/sites/default/default.services.yml
 /drupalbycomposer/web/sites/default/default.settings.php
+/drupalbycomposer/web/sites/default/files
+
+#ignore
+/drupalbycomposer/web/modules/contrib/
 
 
 /drupalbycomposer/.editorconfig
 /drupalbycomposer/.gitattributes
 
-/drupalbycomposer/web/sites/default/files
