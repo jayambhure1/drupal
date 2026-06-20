@@ -1,0 +1,23 @@
+uuid: e48d4ff1-1e3f-40e4-8210-60d5de79e0be
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - my_claro_subtheme
+id: my_claro_subtheme_sitebranding
+theme: my_claro_subtheme
+region: header
+weight: 0
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  label_display: '0'
+  provider: system
+  use_site_logo: true
+  use_site_name: false
+  use_site_slogan: false
+visibility: {  }
