@@ -1,0 +1,114 @@
+{{ attach_library('my_claro_subtheme/global') }}
+
+<div class="page-wrapper">
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="logo">
+        <a href="{{ path('<front>') }}" title="Home">My Site</a>
+      </div>
+      <nav class="main-nav" role="navigation" aria-label="Main navigation">
+        {{ page.primary_menu }}
+      </nav>
+      {% if page.header %}
+        <div class="header-blocks">
+          {{ page.header }}
+        </div>
+      {% endif %}
+    </div>
+  </header>
+
+  <!-- Top Blocks -->
+  {% if page.top %}
+    <div class="top-blocks">
+      {{ page.top }}
+    </div>
+  {% endif %}
+
+  <!-- Main Content Area -->
+  <div class="main-wrapper">
+    <!-- Sidebar Left -->
+    {% if page.sidebar_first %}
+      <aside class="sidebar sidebar-first" role="complementary" aria-label="First sidebar">
+        {{ page.sidebar_first }}
+      </aside>
+    {% endif %}
+
+    <!-- Main Content -->
+    <main class="main-content" role="main">
+      <!-- Breadcrumb -->
+      {% if page.breadcrumb %}
+        <div class="breadcrumb-wrapper">
+          {{ page.breadcrumb }}
+        </div>
+      {% endif %}
+
+      <!-- Page Title -->
+      {% if page.title %}
+        <div class="page-title">
+          {{ page.title }}
+        </div>
+      {% endif %}
+
+      <!-- Messages -->
+      {% if page.messages %}
+        <div class="messages-wrapper">
+          {{ page.messages }}
+        </div>
+      {% endif %}
+
+      <!-- Help -->
+      {% if page.help %}
+        <div class="help-wrapper">
+          {{ page.help }}
+        </div>
+      {% endif %}
+
+      <!-- Tabs -->
+      {% if page.tabs %}
+        <div class="tabs-wrapper">
+          {{ page.tabs }}
+        </div>
+      {% endif %}
+
+      <!-- Page Content -->
+      <div class="page-content">
+        {{ page.content }}
+      </div>
+
+      <!-- Bottom Content Blocks -->
+      {% if page.bottom %}
+        <div class="bottom-blocks">
+          {{ page.bottom }}
+        </div>
+      {% endif %}
+    </main>
+
+    <!-- Sidebar Right -->
+    {% if page.sidebar_second %}
+      <aside class="sidebar sidebar-second" role="complementary" aria-label="Second sidebar">
+        {{ page.sidebar_second }}
+      </aside>
+    {% endif %}
+  </div>
+
+  <!-- Footer Blocks -->
+  {% if page.footer_top %}
+    <div class="footer-top-blocks">
+      {{ page.footer_top }}
+    </div>
+  {% endif %}
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      {% if page.footer %}
+        <div class="footer-blocks">
+          {{ page.footer }}
+        </div>
+      {% else %}
+        <p class="footer-credit">&copy; {{ "now"|date("Y") }} My Site. All rights reserved.</p>
+      {% endif %}
+    </div>
+  </footer>
+</div>

@@ -13,6 +13,9 @@
 #ignore
 /drupalbycomposer/web/modules/contrib/
 
+#theme
+/drupalbycomposer/web/themes/contrib/
+
 
 /drupalbycomposer/.editorconfig
 /drupalbycomposer/.gitattributes

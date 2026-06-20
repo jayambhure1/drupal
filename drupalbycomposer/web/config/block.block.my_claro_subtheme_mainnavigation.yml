@@ -1,4 +1,4 @@
-uuid: a2f5c39e-aaa3-4e8f-ae9b-63685303401f
+uuid: 3a7c3fd9-0296-4f0b-9b37-eb32de0ba7f9
 langcode: en
 status: true
 dependencies:
@@ -7,11 +7,9 @@ dependencies:
   module:
     - system
   theme:
-    - olivero
-_core:
-  default_config_hash: KWAiziL39uEzmOJEql_wbUP2RtqGceL3WM2CfxhMelE
-id: olivero_main_menu
-theme: olivero
+    - my_claro_subtheme
+id: my_claro_subtheme_mainnavigation
+theme: my_claro_subtheme
 region: primary_menu
 weight: 0
 provider: null
@@ -22,6 +20,6 @@ settings:
   label_display: '0'
   provider: system
   level: 1
-  depth: 2
-  expand_all_items: true
+  depth: null
+  expand_all_items: false
 visibility: {  }

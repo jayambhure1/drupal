@@ -1,0 +1,4 @@
+<?php
+function my_claro_subtheme_preprocess_page(&$variables) {
+  $variables['custom_var'] = 'Hello from Claro subtheme!';
+}

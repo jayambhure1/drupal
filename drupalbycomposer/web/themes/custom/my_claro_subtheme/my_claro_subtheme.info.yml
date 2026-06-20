@@ -1,0 +1,11 @@
+name: 'My Claro Subtheme'
+type: theme
+core_version_requirement: ^10 || ^11
+base theme: claro
+description: 'Custom sub-theme based on Claro.'
+package: Custom
+regions:
+  header: 'Header'
+  primary_menu: 'Primary Navigation'
+  content: 'Content'
+  footer: 'Footer'
