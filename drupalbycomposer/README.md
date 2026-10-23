@@ -1,83 +1,92 @@
-# Drupal by Composer - Setup & Development Guide
+# Drupal by Composer - DDEV Setup & Development Guide
 
-A Composer-based Drupal project with custom theme development and quality assurance tools.
+A Composer-based Drupal 11 project configured to run locally with DDEV.
 
 ## Table of Contents
 
+- [Prerequisites](#prerequisites)
 - [Installation](#installation)
-- [Configuration](#configuration)
 - [Database Setup](#database-setup)
+- [DDEV Commands](#ddev-commands)
 - [Theme Development](#theme-development)
 - [Drush Commands](#drush-commands)
 - [Code Quality](#code-quality)
 - [Project Structure](#project-structure)
+- [Troubleshooting](#troubleshooting)
+
+## Prerequisites
+
+- [DDEV](https://ddev.readthedocs.io/en/stable/) installed
+- Docker or a compatible container runtime supported by DDEV
+- Git
+
+DDEV is configured in `.ddev/config.yaml` to use PHP 8.3, MariaDB 11.8, and the `web` directory as the document root. You do not need to install PHP, Composer, or MariaDB on your host machine.
 
 ## Installation
 
-### Prerequisites
-- PHP 7.4+ with required extensions
-- Composer
-- MySQL/MariaDB 5.7+
-- Git
+Run these commands from the directory where you want the repository:
 
-### Step-by-Step Setup
-
-1. **Clone the repository**
-   ```bash
-   git clone git@github.com:jayambhure1/drupal.git
-   cd drupal
-   ```
-
-2. **Navigate to the project directory**
-   ```bash
-   cd drupalbycomposer
-   ```
-
-3. **Install Composer dependencies**
-   ```bash
-   composer install
-   ```
-
-## Configuration
-
-### Database Settings
-
-Edit `web/sites/default/settings.php` and update the following:
-
-```php
-$databases['default']['default'] = array (
-  'database' => 'your_database_name',
-  'username' => 'your_db_user',
-  'password' => 'your_db_password',
-  'host' => 'localhost',
-  'port' => '3306',
-  'driver' => 'mysql',
-  'prefix' => '',
-);
+```bash
+git clone git@github.com:jayambhure1/drupal.git
+cd drupal/drupalbycomposer
+ddev start
+ddev composer install
 ```
+
+The project will be available at <https://drupalbycomposer.ddev.site>. If DDEV reports a different URL, use the URL shown by `ddev describe`.
 
 ## Database Setup
 
-### Import Existing Database
+The repository includes a database export at `db/db.sql.gz`. Import it after starting DDEV:
 
 ```bash
-mysql -u username -p database_name < db/drupalbycomposer.sql
+ddev import-db --file=db/db.sql.gz
+ddev drush cr
 ```
 
-Or via MySQL GUI:
-1. Create a new database
-2. Import `db/drupalbycomposer.sql`
-3. Update database credentials in `settings.php`
+Importing a database replaces the current DDEV database. To import a different SQL or compressed SQL dump, pass its path to `--file`.
+
+DDEV supplies the database connection settings automatically through `settings.ddev.php`. Do not edit database credentials in `web/sites/default/settings.php` for local development.
+
+To export the current database:
+
+```bash
+ddev export-db --file=db/db.sql.gz
+```
+
+## DDEV Commands
+
+Run these commands from `drupalbycomposer/`:
+
+```bash
+# Start the project
+ddev start
+
+# Stop the project
+ddev stop
+
+# Open the project URL in a browser
+ddev launch
+
+# Show project URLs and service status
+ddev describe
+
+# Open a shell in the web container
+ddev ssh
+```
+
+Run Composer commands in the DDEV web container, for example:
+
+```bash
+ddev composer require drupal/module_name
+ddev composer update
+```
 
 ## Theme Development
 
-### Custom Theme Location
+The custom theme is located at `web/themes/custom/my_claro_subtheme/`.
 
-`web/themes/custom/my_claro_subtheme/`
-
-### Theme Structure
-
-```
+```text
 my_claro_subtheme/
 ├── css/
 │   └── style.css              # Responsive theme styles
@@ -87,146 +96,115 @@ my_claro_subtheme/
 │   └── page.html.twig         # Main page template
 ├── my_claro_subtheme.info.yml # Theme info file
 ├── my_claro_subtheme.theme    # Theme preprocess hooks
-└── my_claro_subtheme.libraries.yml  # Asset definitions
+└── my_claro_subtheme.libraries.yml
 ```
 
-### CSS Features
+The theme includes responsive styles for the header, main content, footer, and desktop, tablet, and mobile breakpoints. Edit `css/style.css` to customize its colors, layout, typography, and responsive behavior.
 
-The theme includes responsive styles for:
-- **Header**: Logo, navigation, header blocks
-- **Main Content**: Multi-column layout with sidebars
-- **Footer**: Footer blocks and credit section
-- **Responsive Breakpoints**: 
-  - Desktop (1000px+)
-  - Tablet (720px - 999px)
-  - Mobile (< 520px)
+After changing theme code, clear Drupal's cache:
 
-### Theme Customization
-
-Edit `css/style.css` to customize:
-- Colors (brand colors, backgrounds, text)
-- Layout (spacing, margins, padding)
-- Typography (fonts, sizes, weights)
-- Responsive behavior
+```bash
+ddev drush cr
+```
 
 ## Drush Commands
 
-### Cache Management
+Use `ddev drush` to run Drush inside the web container:
 
 ```bash
-# Clear all caches
-vendor/bin/drush cr
+# Rebuild all caches
+ddev drush cr
 
-# Clear specific cache
-vendor/bin/drush cc render
-```
-
-### Configuration Management
-
-```bash
 # Export configuration to YAML
-vendor/bin/drush cex
+ddev drush cex
 
 # Import configuration from YAML
-vendor/bin/drush cim
+ddev drush cim
 
-# Diff configuration
-vendor/bin/drush config:list
-```
+# List configuration
+ddev drush config:list
 
-### Database & User Management
-
-```bash
-# Reset password
-vendor/bin/drush user:password username password
+# Reset a user's password
+ddev drush user:password username password
 
 # List users
-vendor/bin/drush user:list
+ddev drush user:list
 ```
 
 ## Code Quality
 
-### PHP Stan Analysis
-
 Run static analysis on custom modules:
 
 ```bash
-vendor/bin/phpstan analyse web/modules/custom/
+ddev exec vendor/bin/phpstan analyse web/modules/custom/
 ```
 
-### PHP CodeSniffer (PHPCS)
-
-Check code against Drupal standards:
+Check custom modules against Drupal coding standards:
 
 ```bash
-vendor/bin/phpcs --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md,yml \
+ddev exec vendor/bin/phpcs --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md,yml \
   --standard=Drupal,DrupalPractice web/modules/custom/
 ```
 
-Check specific module:
+Check or automatically fix a specific module by replacing `web/modules/custom/` with its directory:
 
 ```bash
-vendor/bin/phpcs --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md,yml \
+ddev exec vendor/bin/phpcs --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md,yml \
   --standard=Drupal,DrupalPractice web/modules/custom/module_name
-```
 
-Fix code automatically:
-
-```bash
-vendor/bin/phpcbf --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md,yml \
+ddev exec vendor/bin/phpcbf --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md,yml \
   --standard=Drupal,DrupalPractice web/modules/custom/
 ```
 
 ## Project Structure
 
-```
+```text
 drupalbycomposer/
-├── web/                      # Drupal root
-│   ├── core/                 # Drupal core files
-│   ├── modules/              # Contributed modules
-│   │   └── custom/           # Custom modules
-│   ├── themes/               # Themes
-│   │   └── custom/
-│   │       └── my_claro_subtheme/
-│   ├── sites/
-│   │   └── default/
-│   │       ├── settings.php  # Database config
-│   │       └── files/        # User uploads
-│   └── index.php             # Drupal entry point
-├── vendor/                   # Composer packages
+├── .ddev/                    # DDEV project configuration
+├── web/                      # Drupal document root
+│   ├── core/                 # Drupal core
+│   ├── modules/              # Contributed and custom modules
+│   ├── themes/               # Contributed and custom themes
+│   └── sites/default/        # Site settings and uploaded files
+├── vendor/                   # Composer dependencies
 ├── db/
-│   └── drupalbycomposer.sql  # Database export
+│   └── db.sql.gz             # Database export
 ├── recipes/                  # Drupal recipes
 ├── composer.json             # Composer configuration
-├── composer.lock             # Dependency lock file
+├── composer.lock             # Locked dependency versions
 └── README.md                 # This file
 ```
 
 ## Troubleshooting
 
-### Permission Issues
+### DDEV cannot start
+
+Make sure Docker (or your compatible container runtime) is running, then check the project status:
 
 ```bash
-# Fix file permissions on Linux/Mac
-chmod -R 755 web/sites/default/files
-chown -R www-data:www-data web/sites/default/files
+ddev describe
+ddev start
 ```
 
-### Cache Issues
+### Database connection or content issues
+
+Confirm the project is running and import the supplied database if the local database is empty:
 
 ```bash
-# Full cache rebuild
-vendor/bin/drush cache:rebuild
+ddev start
+ddev import-db --file=db/db.sql.gz
+ddev drush cr
 ```
 
-### Theme Not Updating
+### Theme changes are not visible
 
-1. Clear Drupal cache: `vendor/bin/drush cr`
-2. Clear browser cache (Ctrl+F5 or Cmd+Shift+R)
-3. Check that the theme is enabled in admin panel
+1. Rebuild Drupal's cache with `ddev drush cr`.
+2. Clear the browser cache.
+3. Confirm the theme is enabled in Drupal.
 
 ## Support & Resources
 
 - [Drupal Documentation](https://www.drupal.org/documentation)
 - [Drush Documentation](https://www.drush.org/latest/)
+- [DDEV Documentation](https://ddev.readthedocs.io/en/stable/)
 - [Composer Documentation](https://getcomposer.org/doc/)
