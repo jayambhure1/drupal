@@ -3,12 +3,12 @@ _core:
 langcode: en
 uuid: 42aad720-d41e-4e6e-9013-ce2900856773
 name: Drupal
-mail: admin@wampserver.invalid
+mail: ''
 slogan: ''
 page:
   403: ''
   404: ''
-  front: /node/7
+  front: /node
 admin_compact_mode: false
 weight_select_max: 100
 default_langcode: en

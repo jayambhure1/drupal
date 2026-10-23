@@ -17,8 +17,6 @@ module:
   dblog: 0
   dynamic_page_cache: 0
   editor: 0
-  feeds: 0
-  feeds_log: 0
   field: 0
   field_ui: 0
   file: 0
@@ -35,6 +33,8 @@ module:
   path: 0
   path_alias: 0
   search: 0
+  search_help: 0
+  search_node: 0
   shortcut: 0
   standard: 0
   system: 0
@@ -45,7 +45,6 @@ module:
   views_ui: 0
   views: 10
 theme:
-  claro: 0
   olivero: 0
-  my_claro_subtheme: 0
+  claro: 0
 profile: standard

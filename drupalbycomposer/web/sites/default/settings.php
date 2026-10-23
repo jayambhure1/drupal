@@ -888,5 +888,11 @@ $settings['config_sync_directory'] = $app_root . '/config';$databases['default']
   'isolation_level' => 'READ COMMITTED',
   'driver' => 'mysql',
   'namespace' => 'Drupal\\mysql\\Driver\\Database\\mysql',
-  'autoload' => 'core/modules/mysql\\src\\Driver\\Database\\mysql\\',
+  'autoload' => 'core/modules/mysql/src/Driver/Database/mysql/',
 );
+
+// Automatically generated include for settings managed by ddev.
+$ddev_settings = __DIR__ . '/settings.ddev.php';
+if (getenv('IS_DDEV_PROJECT') == 'true' && is_readable($ddev_settings)) {
+  require $ddev_settings;
+}

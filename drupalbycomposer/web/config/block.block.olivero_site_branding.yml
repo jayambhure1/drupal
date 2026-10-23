@@ -1,13 +1,15 @@
-uuid: e48d4ff1-1e3f-40e4-8210-60d5de79e0be
+uuid: 621d8236-ab0a-4c09-aa20-454c02cffa5d
 langcode: en
 status: true
 dependencies:
   module:
     - system
   theme:
-    - my_claro_subtheme
-id: my_claro_subtheme_sitebranding
-theme: my_claro_subtheme
+    - olivero
+_core:
+  default_config_hash: '-OAAZDw1OR_UyAEPEKX0Hu4LaZD149vW9PmMnIC-v0o'
+id: olivero_site_branding
+theme: olivero
 region: header
 weight: 0
 provider: null
@@ -18,6 +20,6 @@ settings:
   label_display: '0'
   provider: system
   use_site_logo: true
-  use_site_name: false
-  use_site_slogan: false
+  use_site_name: true
+  use_site_slogan: true
 visibility: {  }
