@@ -877,6 +877,13 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 #   include $app_root . '/' . $site_path . '/settings.local.php';
 # }
 
+/**
+ * HTML5 validation on forms.
+ *
+ * Explicitly setting this ensures consistent behavior and clears the Drupal 11 deprecation warning.
+ */
+$settings['enable_html5_validation'] = FALSE;
+
 # Configuration sync directory.
 $settings['config_sync_directory'] = $app_root . '/config';$databases['default']['default'] = array (
   'database' => 'drupalbycomposer',
