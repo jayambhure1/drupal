@@ -108,10 +108,13 @@
   background-color: rgba(243, 156, 18, 0.1);
 }
 
+.site-header .main-nav a.is-active,
 .site-header .main-nav li.is-active > a,
-.site-header .main-nav li.active > a {
+.site-header .main-nav li.active > a,
+.site-header .main-nav li.menu-item--active-trail > a {
   color: #f39c12;
   border-bottom-color: #f39c12;
+  background-color: rgba(243, 156, 18, 0.1);
 }
 
 .site-header .main-nav .block {
