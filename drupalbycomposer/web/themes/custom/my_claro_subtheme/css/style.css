@@ -24,18 +24,18 @@
 .header-container {
   max-width: 1400px;
   margin: 0 auto;
-  width: 100%;
+  width: calc(100% - 40px);
   display: flex;
-  justify-content: space-between;
-  align-items: stretch;
+  justify-content: flex-start;
+  align-items: center;
   padding: 0;
-  gap: 0;
+  gap: 24px;
   flex-wrap: nowrap;
 }
 
 .site-header .logo {
   flex-shrink: 0;
-  padding: 15px 20px;
+  padding: 15px 0;
   display: flex;
   align-items: center;
 }
@@ -55,25 +55,23 @@
 
 .site-header .main-nav {
   display: flex;
-  gap: 0;
-  list-style: none;
   margin: 0;
   padding: 0;
   flex: 1;
-  flex-wrap: nowrap;
-  align-items: stretch;
+  justify-content: flex-end;
+  align-items: center;
   min-width: 0;
 }
 
 /* Handle Drupal menu blocks */
 .site-header .main-nav .menu {
   display: flex;
-  gap: 0;
+  justify-content: flex-end;
   list-style: none;
   margin: 0;
   padding: 0;
-  flex: 1;
-  width: 100%;
+  flex: 0 1 auto;
+  width: auto;
 }
 
 .site-header .main-nav li {
@@ -81,7 +79,7 @@
   padding: 0;
   display: flex;
   align-items: stretch;
-  flex-direction: row;
+  flex: 0 0 auto;
   list-style: none;
 }
 
@@ -126,12 +124,46 @@
 
 .site-header .main-nav .block-content {
   display: flex;
-  gap: 0;
-  list-style: none;
   margin: 0;
   padding: 0;
-  flex: 1;
-  width: 100%;
+  justify-content: flex-end;
+  flex: 0 1 auto;
+  width: auto;
+}
+
+.site-header .menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 6px;
+  background: transparent;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.site-header .menu-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+}
+
+.site-header .menu-toggle:hover,
+.site-header .menu-toggle:focus-visible {
+  color: #f39c12;
+  border-color: #f39c12;
+}
+
+.site-header .menu-toggle:focus-visible {
+  outline: 2px solid #f39c12;
+  outline-offset: 3px;
 }
 
 /* ============================================
@@ -434,32 +466,62 @@
   .sidebar-second {
     width: 220px;
   }
-
-  .header-container {
-    gap: 15px;
-  }
 }
 
 @media (max-width: 992px) {
   .header-container {
-    flex-direction: column;
-    gap: 0;
-    padding: 0;
+    width: calc(100% - 32px);
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0 16px;
   }
 
   .site-header .logo {
-    width: 100%;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px 0;
+  }
+
+  .site-header .menu-toggle {
+    display: flex;
+    order: 1;
   }
 
   .site-header .main-nav {
-    width: 100%;
-    flex-wrap: wrap;
+    order: 2;
+    flex: 0 0 100%;
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    border-bottom: 0;
+    transition: max-height 0.25s ease, visibility 0.25s ease;
+  }
+
+  .site-header .main-nav.is-open {
+    max-height: 70vh;
+    overflow-y: auto;
+    visibility: visible;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
-  .site-header .main-nav .menu {
+  .site-header .main-nav .menu,
+  .site-header .main-nav .block-content {
+    display: block;
     width: 100%;
+  }
+
+  .site-header .main-nav li {
+    display: block;
+  }
+
+  .site-header .main-nav a {
+    min-height: 48px;
+    padding: 12px 4px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    font-size: 0.95rem;
+  }
+
+  .site-header .main-nav li > a {
+    border-bottom-width: 1px;
   }
 
   .sidebar-first,
@@ -482,27 +544,6 @@
 }
 
 @media (max-width: 768px) {
-  .header-container {
-    flex-direction: column;
-    gap: 0;
-    padding: 0;
-  }
-
-  .site-header .logo {
-    width: 100%;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .site-header .main-nav {
-    width: 100%;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .site-header .main-nav a {
-    padding: 12px 12px;
-    font-size: 0.85rem;
-  }
-
   .main-wrapper {
     flex-direction: column;
     gap: 20px;
@@ -546,25 +587,11 @@
 
 @media (max-width: 480px) {
   .header-container {
-    flex-direction: column;
-    padding: 0;
-    gap: 0;
+    width: calc(100% - 24px);
   }
 
   .site-header .logo {
-    width: 100%;
-    padding: 10px 15px;
-  }
-
-  .site-header .main-nav {
-    width: 100%;
-    flex-direction: row;
-    overflow-x: auto;
-  }
-
-  .site-header .main-nav a {
-    padding: 10px;
-    font-size: 0.8rem;
+    padding: 10px 0;
   }
 
   .page-title h1 {

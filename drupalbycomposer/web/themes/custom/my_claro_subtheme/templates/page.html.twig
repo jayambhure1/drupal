@@ -7,7 +7,18 @@
       <div class="logo">
         <a href="{{ path('<front>') }}" title="Home">My Site</a>
       </div>
-      <nav class="main-nav" role="navigation" aria-label="Main navigation">
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="primary-navigation"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav id="primary-navigation" class="main-nav" aria-label="Main navigation">
         {{ page.primary_menu }}
       </nav>
       {% if page.header %}
