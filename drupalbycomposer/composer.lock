@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c2d8ce11140191a4ba7ce5d9f89fec04",
+    "content-hash": "911848db2da03f04628c557865f94139",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1557,6 +1557,50 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/ctools",
                 "issues": "https://www.drupal.org/project/issues/ctools"
+            }
+        },
+        {
+            "name": "drupal/duplicate_node",
+            "version": "2.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/duplicate_node.git",
+                "reference": "2.0.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/duplicate_node-2.0.2.zip",
+                "reference": "2.0.2",
+                "shasum": "0346d39fbca387e6aceffe9432e935c9fc4760f9"
+            },
+            "require": {
+                "drupal/core": "^9 || ^10  || ^11"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.0.2",
+                    "datestamp": "1770507053",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "jayambhure1",
+                    "homepage": "https://www.drupal.org/user/3736272"
+                }
+            ],
+            "description": "Duplicate node with layout and associated blocks",
+            "homepage": "https://www.drupal.org/project/duplicate_node",
+            "support": {
+                "source": "https://git.drupalcode.org/project/duplicate_node"
             }
         },
         {

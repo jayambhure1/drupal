@@ -1,0 +1,8 @@
+_core:
+  default_config_hash: qcowmBJBQo9flFEkzd3IfIg16USzHehamA-uGZvKIDI
+prefix_for_node_title: 'duplicate of'
+exclude:
+  node: {  }
+  paragraph: {  }
+duplicate_status: 0
+duplicate_layout_block_status: 0

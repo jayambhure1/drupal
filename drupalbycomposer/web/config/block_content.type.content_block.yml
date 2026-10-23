@@ -1,0 +1,8 @@
+uuid: bacc3321-8170-411e-a9e7-60795d77dd23
+langcode: en
+status: true
+dependencies: {  }
+id: content_block
+label: 'Content Block'
+revision: false
+description: 'Added title subtitle and desc'
