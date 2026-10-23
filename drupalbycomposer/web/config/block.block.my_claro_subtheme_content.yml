@@ -1,0 +1,22 @@
+uuid: 69e11048-b5b1-47ed-ad9e-9a919e803bc0
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - my_claro_subtheme
+_core:
+  default_config_hash: erQSEZF2XUjNmgTl0uNRBzmg18ZGXwUcw2FhApoeuHk
+id: my_claro_subtheme_content
+theme: my_claro_subtheme
+region: content
+weight: 0
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

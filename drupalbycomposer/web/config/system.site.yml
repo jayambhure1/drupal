@@ -2,13 +2,13 @@ _core:
   default_config_hash: ijfbzDTN4CbE7Sr-6ubWzy_t1vH4OtU1doNCLssVz-4
 langcode: en
 uuid: 42aad720-d41e-4e6e-9013-ce2900856773
-name: Drupal
-mail: ''
-slogan: ''
+name: drupalbycomposer
+mail: admin@admin.com
+slogan: demo
 page:
   403: ''
   404: ''
-  front: /node
+  front: /node/1
 admin_compact_mode: false
 weight_select_max: 100
 default_langcode: en
