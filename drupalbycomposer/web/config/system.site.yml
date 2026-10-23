@@ -7,8 +7,8 @@ mail: admin@admin.com
 slogan: demo
 page:
   403: ''
-  404: ''
-  front: /node/1
+  404: /404
+  front: /home
 admin_compact_mode: false
 weight_select_max: 100
 default_langcode: en
