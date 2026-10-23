@@ -1,0 +1,18 @@
+uuid: 2aedee01-68fe-4bf0-98ae-15404f087f6d
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: 'Custom Page'
+type: custom_page
+description: 'Custom Page with layout builder'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true

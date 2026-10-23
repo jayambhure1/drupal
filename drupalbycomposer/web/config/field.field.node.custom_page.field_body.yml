@@ -1,0 +1,24 @@
+uuid: 812cf4a6-5ff6-425b-9668-95c9580d7f93
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_body
+    - filter.format.full_html
+    - node.type.custom_page
+  module:
+    - text
+id: node.custom_page.field_body
+field_name: field_body
+entity_type: node
+bundle: custom_page
+label: Body
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - full_html
+field_type: text_long
